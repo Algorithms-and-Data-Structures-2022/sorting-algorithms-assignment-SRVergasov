@@ -1,6 +1,7 @@
 #include "assignment/quick_sort.hpp"
 
 #include <cassert>  // assert
+#include <iostream>
 
 #include "assignment/partitioning.hpp"  // partition, median_of_three
 
@@ -18,10 +19,14 @@ namespace assignment {
     }
 
     // вычисляем индекс опорного элемента ... median_of_three ...
-    int pivot_index = -1 /* напишите здесь свой код ... */;
+    int pivot_index = median_of_three(arr, start, stop);
 
     // производим разбиение относительно опорного элемента ...  partition ...
+    int partition_index = partition(arr, start, stop, pivot_index);
+
     // рекурсивно повторяем процедуру над левой и правой частью ...
+    quick_sort(arr, start, partition_index - 1);
+    quick_sort(arr, partition_index + 1, stop);
   }
 
 }  // namespace assignment
